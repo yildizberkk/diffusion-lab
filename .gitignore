@@ -6,3 +6,6 @@ __pycache__/
 .DS_Store
 .env*
 !.env.example
+ckpt.pt
+*.pt
+equations_to_render.md
