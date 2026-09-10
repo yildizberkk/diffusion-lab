@@ -14,7 +14,7 @@ The project is first implemented and explored in Jupyter notebooks. And then reo
 
 The learning process includes discussing with friends who are experts in this area, watching YouTube videos (the two that helped most are linked below), reading blogs, and discussing with AI agents and LLM chatbots.
 
-The first training has on my M1 MacBook with a batch size of 128, for 40 epochs. It took around 4 hours.
+The first training has run on my M1 MacBook with a batch size of 128, for 40 epochs. It took around 4 hours.
 
 ## What "From Scratch" Means
 
