@@ -19,10 +19,12 @@ def main():
     p.add_argument("--batch-size", type=int, default=128, help="Size of the batch")
     p.add_argument("--lr", type=float, default=2e-4, help="The learning rate parameter")
     p.add_argument("--base", type=int, default=64, help="UNet base channel width")
-    p.add_argument("--T", type=int, default=1000, help="number of timesteps to iterate")
+    p.add_argument("--T", type=int, default=1000, help="Number of timesteps to iterate")
     p.add_argument("--device", type=str, default="mps", help="The name of the device to run")
-    p.add_argument("--out", type=str, default="checkpoints", help="output folder name for the checkpoints to save")
+    p.add_argument("--out", type=str, default="checkpoints", help="Output folder name for the checkpoints to save")
     p.add_argument("--seed", type=int, default=0, help="The seed to choose")
+    p.add_argument("--attention", default=True, action=argparse.BooleanOptionalAction, help="Attention activation")
+    
 
     args = p.parse_args()
     torch.manual_seed(args.seed)
@@ -31,7 +33,7 @@ def main():
 
     # Build
     schedule = Schedule(T=args.T, device=args.device)
-    model = UNet(base=args.base).to(args.device)
+    model = UNet(base=args.base, attention=args.attention).to(args.device)
     loader = DataLoader(get_dataset(name=args.dataset), batch_size=args.batch_size, shuffle=True)
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr)
     losses = []
@@ -40,7 +42,8 @@ def main():
     # Print the initializations
     print(f"device={args.device}  dataset={args.dataset}  epochs={args.epochs}  "
           f"batch={args.batch_size}  lr={args.lr}  base={args.base}  "
-          f"T={args.T}  seed={args.seed}", flush=True)
+          f"T={args.T}  seed={args.seed}  "
+          f"attention={args.attention}", flush=True)
     print(f"data:  {len(loader.dataset):,} images, {len(loader)} batches/epoch", flush=True)
     print(f"model: {sum(p.numel() for p in model.parameters()):,} parameters", flush=True)
 

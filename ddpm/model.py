@@ -43,10 +43,54 @@ class ResBlock(nn.Module):
         # h + skip(x)
         return h + self.skip(x)
 
+# The Attention Block that will be used on the bottleneck of the UNet
+
+class AttentionBlock(nn.Module):
+    def __init__(self, channels):
+        super().__init__()
+        self.channels = channels
+
+        # GroupNorm, 8 groups, over channels
+        self.norm = nn.GroupNorm(num_groups=8, num_channels=channels)
+
+        # Projections W_q, W_k, W_v
+        self.q_proj = nn.Linear(channels, channels)
+        self.k_proj = nn.Linear(channels, channels)
+        self.v_proj = nn.Linear(channels, channels)
+        
+        self.output_proj = nn.Linear(channels, channels)
+
+        # Set the weights and bias of output_proj to zero 
+        nn.init.zeros_(self.output_proj.weight)
+        nn.init.zeros_(self.output_proj.bias)
+
+    def forward(self, x):
+        # input x : (B, C, H, W)
+        # Normalize
+        x_normalized = self.norm(x) # (B, C, H, W)
+        # Flatten
+        x_flat = torch.flatten(x_normalized, start_dim=-2) # (B, C, N), where N = H x W
+        # Swap axes and get the tokens we will use
+        tokens = torch.swapaxes(x_flat, -1, -2) # (B, N, C)
+
+        # Apply the projections to tokens, and get q, k, v.
+        q = self.q_proj(tokens) # (B, N, C)
+        k = self.k_proj(tokens) # (B, N, C)
+        v = self.v_proj(tokens) # (B, N, C)
+
+        scores = (q @ torch.swapaxes(k, -1, -2)) / (self.channels ** 0.5) # (B, N, N)
+        weights = F.softmax(scores, dim=2) # (B, N, N)
+        attn_out = weights @ v # (B, N, C)
+        projected = self.output_proj(attn_out) # (B, N, C)
+        swapped_back = torch.swapaxes(projected, -1, -2) # (B, C, N)
+        unflattened = swapped_back.reshape(x.shape) # (B, C, H, W)
+
+        return x + unflattened
+
 # UNet, which is the keystone (model) and the action will happen
 
 class UNet(nn.Module):
-    def __init__(self, in_ch=1, base=64, temb_dim=256):
+    def __init__(self, in_ch=1, base=64, temb_dim=256, attention=True):
         super().__init__()
         # forward needs this to call timestep_embedding
         self.temb_dim = temb_dim
@@ -75,6 +119,9 @@ class UNet(nn.Module):
 
         # ResBlock @ 8x8
         self.mid = ResBlock(base*2, base*2, temb_dim)
+
+        # AttentionBlock 
+        self.attn = AttentionBlock(base*2) if attention else nn.Identity()
 
         # Upsample + conv, -> 16x16
         self.up1 = nn.Sequential(
@@ -131,6 +178,9 @@ class UNet(nn.Module):
         
         # mid
         h = self.mid(h, temb)
+
+        # attention
+        h = self.attn(h)
 
         # up1
         h = self.up1(h)
