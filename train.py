@@ -7,6 +7,7 @@ from torch.utils.data import DataLoader
 import torch.nn.functional as F
 import os
 import time
+import copy
 
 
 def main():
@@ -24,7 +25,9 @@ def main():
     p.add_argument("--out", type=str, default="checkpoints", help="Output folder name for the checkpoints to save")
     p.add_argument("--seed", type=int, default=0, help="The seed to choose")
     p.add_argument("--attention", default=True, action=argparse.BooleanOptionalAction, help="Attention activation")
-    
+    p.add_argument("--ema-decay", type=float, default=0.999, help="The decay parameter of the EMA")
+    p.add_argument("--schedule", type=str, default="linear", help="The kind of the scheduler. Either linear (default) or cosine")
+
 
     args = p.parse_args()
     torch.manual_seed(args.seed)
@@ -32,18 +35,26 @@ def main():
     
 
     # Build
-    schedule = Schedule(T=args.T, device=args.device)
+    schedule = Schedule(T=args.T, device=args.device, kind=args.schedule)
     model = UNet(base=args.base, attention=args.attention).to(args.device)
+    ema_model = copy.deepcopy(model)
     loader = DataLoader(get_dataset(name=args.dataset), batch_size=args.batch_size, shuffle=True)
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr)
     losses = []
+
+    for p in ema_model.parameters():
+        p.requires_grad_(False)
+
+        
     os.makedirs(args.out, exist_ok=True)
 
     # Print the initializations
     print(f"device={args.device}  dataset={args.dataset}  epochs={args.epochs}  "
           f"batch={args.batch_size}  lr={args.lr}  base={args.base}  "
           f"T={args.T}  seed={args.seed}  "
-          f"attention={args.attention}", flush=True)
+          f"attention={args.attention}  "
+          f"ema_decay={args.ema_decay}"
+          f"schedule={args.schedule}", flush=True)
     print(f"data:  {len(loader.dataset):,} images, {len(loader)} batches/epoch", flush=True)
     print(f"model: {sum(p.numel() for p in model.parameters()):,} parameters", flush=True)
 
@@ -73,6 +84,10 @@ def main():
             loss.backward()
             optimizer.step()
 
+            with torch.no_grad():
+                for p_ema, p in zip(ema_model.parameters(), model.parameters()):
+                    p_ema.mul_(args.ema_decay).add_(p, alpha=1 - args.ema_decay)
+
             losses.append(loss.item())
 
             if i % 50 == 0:
@@ -89,7 +104,8 @@ def main():
             "optimizer": optimizer.state_dict(),
             "losses": losses,
             "epoch": epoch,
-            "config": vars(args)
+            "config": vars(args),
+            "ema": ema_model.state_dict()
         }
 
         torch.save(ckpt, f"{args.out}/ckpt_last.pt")
