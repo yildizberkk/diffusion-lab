@@ -53,7 +53,7 @@ def main():
           f"batch={args.batch_size}  lr={args.lr}  base={args.base}  "
           f"T={args.T}  seed={args.seed}  "
           f"attention={args.attention}  "
-          f"ema_decay={args.ema_decay}"
+          f"ema_decay={args.ema_decay}  "
           f"schedule={args.schedule}", flush=True)
     print(f"data:  {len(loader.dataset):,} images, {len(loader)} batches/epoch", flush=True)
     print(f"model: {sum(p.numel() for p in model.parameters()):,} parameters", flush=True)

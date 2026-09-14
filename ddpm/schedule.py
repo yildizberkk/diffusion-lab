@@ -10,13 +10,6 @@ class Schedule:
             # Variance (!) of the noise getting added in each step
             self.betas = torch.linspace(1e-4,0.02,self.T, device=device)
 
-            # Complements of noises, how much signal survives in each step
-            self.alphas = 1- self.betas
-
-            # Cumulative products of alphas. entry t is the a_1 \cdot \dots \cdot a_t
-            # How much of the original image survives after t steps
-            self.alpha_bars = torch.cumprod(self.alphas, dim=0)
-
         elif kind == "cosine":
             # The offset for computational reasons
             s = 0.008
@@ -33,12 +26,17 @@ class Schedule:
             # Normalize
             alpha_bars_full = f / f[0]
 
-            self.alpha_bars = alpha_bars_full[1:]
             self.betas = (1 - (alpha_bars_full[1:] / alpha_bars_full[:-1])).clamp(max=0.999)
-            self.alphas = 1 - self.betas
         
         else:
             raise ValueError(f"Unknown kind: {kind}")
+
+        # Complements of noises, how much signal survives in each step
+        self.alphas = 1 - self.betas
+
+        # Cumulative products of alphas. entry t is the a_1 \cdot \dots \cdot a_t
+        # How much of the original image survives after t steps
+        self.alpha_bars = torch.cumprod(self.alphas, dim=0)
 
         # Assertions
         assert  torch.allclose( self.alpha_bars[0], torch.tensor(1.0), atol=1e-3 ),  f"alpha_bars should start at ~1, got {self.alpha_bars[0].item()}"

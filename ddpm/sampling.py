@@ -42,12 +42,19 @@ def sample(model, schedule, n_samples, img_shape=(1, 32, 32)):
 # \eta = 1 and s = t-1 -> DDPM
 # So, we can make choice on DDIM to get the DDPM indeed.
 @torch.no_grad()
-def ddim_sample(model, schedule, n_samples, img_shape=(1, 32, 32), steps=50):
+def ddim_sample(model, schedule, n_samples, img_shape=(1, 32, 32), steps=50, x_T=None, eta=0.0, clip=True):
     model.eval()
     device = next(model.parameters()).device
 
-    # (n, 1, 32, 32) pure noise, on device
-    x = torch.randn([n_samples, *img_shape], device=device)
+    # If the x_T is not given, then create it as we do in DDPM
+    if x_T is None:
+        # (n, 1, 32, 32) pure noise, on device
+        x = torch.randn([n_samples, *img_shape], device=device)
+    else:
+        # Channel sizes should match
+        if tuple(x_T.shape) != (n_samples, *img_shape):
+            raise ValueError(f"x_T has shape {tuple(x_T.shape)}, expected {(n_samples, *img_shape)}")
+        x = x_T.to(device)
 
     # the 50 t values from T-1 to 0
     ts = torch.linspace(start=schedule.T-1, end=0, steps=steps).round().long()
@@ -67,10 +74,23 @@ def ddim_sample(model, schedule, n_samples, img_shape=(1, 32, 32), steps=50):
         a_bar_s = schedule.alpha_bars[t_next] if i+1 < steps else torch.tensor(1.0, device=device)
 
         # Deriving the original image from the noise prediction (as I have explanied above, first iterations will be pretty bad)
-        x_0_hat = ((x - (( 1 - a_bar_t).sqrt()) * eps_hat) / a_bar_t.sqrt()).clamp(min = -1, max = 1)
+        x_0_hat = ((x - (( 1 - a_bar_t).sqrt()) * eps_hat) / a_bar_t.sqrt())
 
-        # Renoise
-        x = (a_bar_s.sqrt() * x_0_hat) + ((1 - a_bar_s).sqrt() * eps_hat)
+        if clip:
+            x_0_hat = x_0_hat.clamp(min = -1, max = 1)
+
+        if eta == 0:
+            # Renoise
+            x = (a_bar_s.sqrt() * x_0_hat) + ((1 - a_bar_s).sqrt() * eps_hat)
+        else:
+            sigma = eta * ((1 - a_bar_s) / (1 - a_bar_t)).sqrt() * (1 - (a_bar_t / a_bar_s)).sqrt()
+            # Fresh noise
+            z = torch.randn_like(x)
+            x = (a_bar_s.sqrt() * x_0_hat) + ((1 - a_bar_s - (sigma ** 2)).clamp(min=0).sqrt() * eps_hat) + (sigma * z)
+
+
+
+        
 
     return x
 

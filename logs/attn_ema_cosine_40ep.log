@@ -1,0 +1,443 @@
+device=mps  dataset=mnist  epochs=40  batch=128  lr=0.0002  base=64  T=1000  seed=0  attention=True  ema_decay=0.999schedule=cosine
+data:  60,000 images, 469 batches/epoch
+model: 2,885,441 parameters
+epoch 0 batch 0  loss 1.0780
+epoch 0 batch 50  loss 0.1208
+epoch 0 batch 100  loss 0.0800
+epoch 0 batch 150  loss 0.0632
+epoch 0 batch 200  loss 0.0554
+epoch 0 batch 250  loss 0.0640
+epoch 0 batch 300  loss 0.0648
+epoch 0 batch 350  loss 0.0567
+epoch 0 batch 400  loss 0.0462
+epoch 0 batch 450  loss 0.0546
+epoch   0 | loss 0.0834 | 350s
+epoch 1 batch 0  loss 0.0497
+epoch 1 batch 50  loss 0.0444
+epoch 1 batch 100  loss 0.0370
+epoch 1 batch 150  loss 0.0443
+epoch 1 batch 200  loss 0.0388
+epoch 1 batch 250  loss 0.0420
+epoch 1 batch 300  loss 0.0321
+epoch 1 batch 350  loss 0.0477
+epoch 1 batch 400  loss 0.0395
+epoch 1 batch 450  loss 0.0414
+epoch   1 | loss 0.0421 | 351s
+epoch 2 batch 0  loss 0.0453
+epoch 2 batch 50  loss 0.0405
+epoch 2 batch 100  loss 0.0406
+epoch 2 batch 150  loss 0.0411
+epoch 2 batch 200  loss 0.0407
+epoch 2 batch 250  loss 0.0352
+epoch 2 batch 300  loss 0.0357
+epoch 2 batch 350  loss 0.0432
+epoch 2 batch 400  loss 0.0364
+epoch 2 batch 450  loss 0.0373
+epoch   2 | loss 0.0378 | 348s
+epoch 3 batch 0  loss 0.0347
+epoch 3 batch 50  loss 0.0394
+epoch 3 batch 100  loss 0.0298
+epoch 3 batch 150  loss 0.0341
+epoch 3 batch 200  loss 0.0408
+epoch 3 batch 250  loss 0.0370
+epoch 3 batch 300  loss 0.0350
+epoch 3 batch 350  loss 0.0386
+epoch 3 batch 400  loss 0.0330
+epoch 3 batch 450  loss 0.0282
+epoch   3 | loss 0.0357 | 348s
+epoch 4 batch 0  loss 0.0315
+epoch 4 batch 50  loss 0.0314
+epoch 4 batch 100  loss 0.0416
+epoch 4 batch 150  loss 0.0339
+epoch 4 batch 200  loss 0.0324
+epoch 4 batch 250  loss 0.0324
+epoch 4 batch 300  loss 0.0346
+epoch 4 batch 350  loss 0.0333
+epoch 4 batch 400  loss 0.0299
+epoch 4 batch 450  loss 0.0326
+epoch   4 | loss 0.0340 | 347s
+epoch 5 batch 0  loss 0.0306
+epoch 5 batch 50  loss 0.0320
+epoch 5 batch 100  loss 0.0328
+epoch 5 batch 150  loss 0.0353
+epoch 5 batch 200  loss 0.0314
+epoch 5 batch 250  loss 0.0295
+epoch 5 batch 300  loss 0.0313
+epoch 5 batch 350  loss 0.0306
+epoch 5 batch 400  loss 0.0333
+epoch 5 batch 450  loss 0.0322
+epoch   5 | loss 0.0330 | 347s
+epoch 6 batch 0  loss 0.0372
+epoch 6 batch 50  loss 0.0317
+epoch 6 batch 100  loss 0.0353
+epoch 6 batch 150  loss 0.0316
+epoch 6 batch 200  loss 0.0299
+epoch 6 batch 250  loss 0.0319
+epoch 6 batch 300  loss 0.0309
+epoch 6 batch 350  loss 0.0373
+epoch 6 batch 400  loss 0.0307
+epoch 6 batch 450  loss 0.0295
+epoch   6 | loss 0.0327 | 348s
+epoch 7 batch 0  loss 0.0343
+epoch 7 batch 50  loss 0.0302
+epoch 7 batch 100  loss 0.0304
+epoch 7 batch 150  loss 0.0347
+epoch 7 batch 200  loss 0.0324
+epoch 7 batch 250  loss 0.0294
+epoch 7 batch 300  loss 0.0314
+epoch 7 batch 350  loss 0.0331
+epoch 7 batch 400  loss 0.0278
+epoch 7 batch 450  loss 0.0306
+epoch   7 | loss 0.0320 | 347s
+epoch 8 batch 0  loss 0.0301
+epoch 8 batch 50  loss 0.0292
+epoch 8 batch 100  loss 0.0333
+epoch 8 batch 150  loss 0.0316
+epoch 8 batch 200  loss 0.0323
+epoch 8 batch 250  loss 0.0351
+epoch 8 batch 300  loss 0.0349
+epoch 8 batch 350  loss 0.0322
+epoch 8 batch 400  loss 0.0333
+epoch 8 batch 450  loss 0.0303
+epoch   8 | loss 0.0317 | 348s
+epoch 9 batch 0  loss 0.0346
+epoch 9 batch 50  loss 0.0344
+epoch 9 batch 100  loss 0.0320
+epoch 9 batch 150  loss 0.0294
+epoch 9 batch 200  loss 0.0314
+epoch 9 batch 250  loss 0.0340
+epoch 9 batch 300  loss 0.0341
+epoch 9 batch 350  loss 0.0324
+epoch 9 batch 400  loss 0.0291
+epoch 9 batch 450  loss 0.0350
+epoch   9 | loss 0.0310 | 348s
+epoch 10 batch 0  loss 0.0292
+epoch 10 batch 50  loss 0.0362
+epoch 10 batch 100  loss 0.0312
+epoch 10 batch 150  loss 0.0368
+epoch 10 batch 200  loss 0.0336
+epoch 10 batch 250  loss 0.0241
+epoch 10 batch 300  loss 0.0291
+epoch 10 batch 350  loss 0.0323
+epoch 10 batch 400  loss 0.0271
+epoch 10 batch 450  loss 0.0278
+epoch  10 | loss 0.0310 | 347s
+epoch 11 batch 0  loss 0.0296
+epoch 11 batch 50  loss 0.0312
+epoch 11 batch 100  loss 0.0287
+epoch 11 batch 150  loss 0.0321
+epoch 11 batch 200  loss 0.0327
+epoch 11 batch 250  loss 0.0299
+epoch 11 batch 300  loss 0.0270
+epoch 11 batch 350  loss 0.0317
+epoch 11 batch 400  loss 0.0262
+epoch 11 batch 450  loss 0.0346
+epoch  11 | loss 0.0305 | 347s
+epoch 12 batch 0  loss 0.0272
+epoch 12 batch 50  loss 0.0307
+epoch 12 batch 100  loss 0.0280
+epoch 12 batch 150  loss 0.0330
+epoch 12 batch 200  loss 0.0307
+epoch 12 batch 250  loss 0.0308
+epoch 12 batch 300  loss 0.0321
+epoch 12 batch 350  loss 0.0304
+epoch 12 batch 400  loss 0.0352
+epoch 12 batch 450  loss 0.0274
+epoch  12 | loss 0.0303 | 347s
+epoch 13 batch 0  loss 0.0308
+epoch 13 batch 50  loss 0.0328
+epoch 13 batch 100  loss 0.0296
+epoch 13 batch 150  loss 0.0310
+epoch 13 batch 200  loss 0.0350
+epoch 13 batch 250  loss 0.0319
+epoch 13 batch 300  loss 0.0294
+epoch 13 batch 350  loss 0.0325
+epoch 13 batch 400  loss 0.0313
+epoch 13 batch 450  loss 0.0264
+epoch  13 | loss 0.0302 | 347s
+epoch 14 batch 0  loss 0.0298
+epoch 14 batch 50  loss 0.0280
+epoch 14 batch 100  loss 0.0289
+epoch 14 batch 150  loss 0.0270
+epoch 14 batch 200  loss 0.0296
+epoch 14 batch 250  loss 0.0317
+epoch 14 batch 300  loss 0.0280
+epoch 14 batch 350  loss 0.0305
+epoch 14 batch 400  loss 0.0328
+epoch 14 batch 450  loss 0.0285
+epoch  14 | loss 0.0301 | 347s
+epoch 15 batch 0  loss 0.0303
+epoch 15 batch 50  loss 0.0262
+epoch 15 batch 100  loss 0.0310
+epoch 15 batch 150  loss 0.0299
+epoch 15 batch 200  loss 0.0267
+epoch 15 batch 250  loss 0.0296
+epoch 15 batch 300  loss 0.0293
+epoch 15 batch 350  loss 0.0328
+epoch 15 batch 400  loss 0.0327
+epoch 15 batch 450  loss 0.0288
+epoch  15 | loss 0.0298 | 347s
+epoch 16 batch 0  loss 0.0315
+epoch 16 batch 50  loss 0.0317
+epoch 16 batch 100  loss 0.0300
+epoch 16 batch 150  loss 0.0301
+epoch 16 batch 200  loss 0.0270
+epoch 16 batch 250  loss 0.0295
+epoch 16 batch 300  loss 0.0300
+epoch 16 batch 350  loss 0.0277
+epoch 16 batch 400  loss 0.0323
+epoch 16 batch 450  loss 0.0292
+epoch  16 | loss 0.0300 | 348s
+epoch 17 batch 0  loss 0.0293
+epoch 17 batch 50  loss 0.0356
+epoch 17 batch 100  loss 0.0266
+epoch 17 batch 150  loss 0.0269
+epoch 17 batch 200  loss 0.0318
+epoch 17 batch 250  loss 0.0302
+epoch 17 batch 300  loss 0.0281
+epoch 17 batch 350  loss 0.0312
+epoch 17 batch 400  loss 0.0332
+epoch 17 batch 450  loss 0.0324
+epoch  17 | loss 0.0297 | 347s
+epoch 18 batch 0  loss 0.0347
+epoch 18 batch 50  loss 0.0288
+epoch 18 batch 100  loss 0.0325
+epoch 18 batch 150  loss 0.0301
+epoch 18 batch 200  loss 0.0331
+epoch 18 batch 250  loss 0.0301
+epoch 18 batch 300  loss 0.0320
+epoch 18 batch 350  loss 0.0291
+epoch 18 batch 400  loss 0.0284
+epoch 18 batch 450  loss 0.0316
+epoch  18 | loss 0.0292 | 347s
+epoch 19 batch 0  loss 0.0301
+epoch 19 batch 50  loss 0.0278
+epoch 19 batch 100  loss 0.0329
+epoch 19 batch 150  loss 0.0298
+epoch 19 batch 200  loss 0.0298
+epoch 19 batch 250  loss 0.0304
+epoch 19 batch 300  loss 0.0301
+epoch 19 batch 350  loss 0.0321
+epoch 19 batch 400  loss 0.0298
+epoch 19 batch 450  loss 0.0262
+epoch  19 | loss 0.0298 | 347s
+epoch 20 batch 0  loss 0.0281
+epoch 20 batch 50  loss 0.0252
+epoch 20 batch 100  loss 0.0280
+epoch 20 batch 150  loss 0.0304
+epoch 20 batch 200  loss 0.0278
+epoch 20 batch 250  loss 0.0310
+epoch 20 batch 300  loss 0.0293
+epoch 20 batch 350  loss 0.0277
+epoch 20 batch 400  loss 0.0264
+epoch 20 batch 450  loss 0.0300
+epoch  20 | loss 0.0293 | 347s
+epoch 21 batch 0  loss 0.0282
+epoch 21 batch 50  loss 0.0266
+epoch 21 batch 100  loss 0.0306
+epoch 21 batch 150  loss 0.0276
+epoch 21 batch 200  loss 0.0265
+epoch 21 batch 250  loss 0.0256
+epoch 21 batch 300  loss 0.0250
+epoch 21 batch 350  loss 0.0267
+epoch 21 batch 400  loss 0.0302
+epoch 21 batch 450  loss 0.0278
+epoch  21 | loss 0.0290 | 347s
+epoch 22 batch 0  loss 0.0249
+epoch 22 batch 50  loss 0.0300
+epoch 22 batch 100  loss 0.0296
+epoch 22 batch 150  loss 0.0299
+epoch 22 batch 200  loss 0.0309
+epoch 22 batch 250  loss 0.0309
+epoch 22 batch 300  loss 0.0323
+epoch 22 batch 350  loss 0.0291
+epoch 22 batch 400  loss 0.0314
+epoch 22 batch 450  loss 0.0285
+epoch  22 | loss 0.0294 | 347s
+epoch 23 batch 0  loss 0.0313
+epoch 23 batch 50  loss 0.0266
+epoch 23 batch 100  loss 0.0289
+epoch 23 batch 150  loss 0.0289
+epoch 23 batch 200  loss 0.0301
+epoch 23 batch 250  loss 0.0311
+epoch 23 batch 300  loss 0.0285
+epoch 23 batch 350  loss 0.0321
+epoch 23 batch 400  loss 0.0247
+epoch 23 batch 450  loss 0.0263
+epoch  23 | loss 0.0288 | 347s
+epoch 24 batch 0  loss 0.0364
+epoch 24 batch 50  loss 0.0287
+epoch 24 batch 100  loss 0.0309
+epoch 24 batch 150  loss 0.0316
+epoch 24 batch 200  loss 0.0286
+epoch 24 batch 250  loss 0.0244
+epoch 24 batch 300  loss 0.0314
+epoch 24 batch 350  loss 0.0276
+epoch 24 batch 400  loss 0.0279
+epoch 24 batch 450  loss 0.0267
+epoch  24 | loss 0.0291 | 347s
+epoch 25 batch 0  loss 0.0287
+epoch 25 batch 50  loss 0.0279
+epoch 25 batch 100  loss 0.0251
+epoch 25 batch 150  loss 0.0278
+epoch 25 batch 200  loss 0.0276
+epoch 25 batch 250  loss 0.0271
+epoch 25 batch 300  loss 0.0291
+epoch 25 batch 350  loss 0.0296
+epoch 25 batch 400  loss 0.0302
+epoch 25 batch 450  loss 0.0279
+epoch  25 | loss 0.0289 | 347s
+epoch 26 batch 0  loss 0.0264
+epoch 26 batch 50  loss 0.0280
+epoch 26 batch 100  loss 0.0307
+epoch 26 batch 150  loss 0.0314
+epoch 26 batch 200  loss 0.0293
+epoch 26 batch 250  loss 0.0294
+epoch 26 batch 300  loss 0.0297
+epoch 26 batch 350  loss 0.0307
+epoch 26 batch 400  loss 0.0324
+epoch 26 batch 450  loss 0.0253
+epoch  26 | loss 0.0289 | 347s
+epoch 27 batch 0  loss 0.0283
+epoch 27 batch 50  loss 0.0294
+epoch 27 batch 100  loss 0.0226
+epoch 27 batch 150  loss 0.0274
+epoch 27 batch 200  loss 0.0259
+epoch 27 batch 250  loss 0.0285
+epoch 27 batch 300  loss 0.0314
+epoch 27 batch 350  loss 0.0268
+epoch 27 batch 400  loss 0.0297
+epoch 27 batch 450  loss 0.0239
+epoch  27 | loss 0.0287 | 348s
+epoch 28 batch 0  loss 0.0266
+epoch 28 batch 50  loss 0.0263
+epoch 28 batch 100  loss 0.0262
+epoch 28 batch 150  loss 0.0262
+epoch 28 batch 200  loss 0.0253
+epoch 28 batch 250  loss 0.0259
+epoch 28 batch 300  loss 0.0289
+epoch 28 batch 350  loss 0.0372
+epoch 28 batch 400  loss 0.0250
+epoch 28 batch 450  loss 0.0258
+epoch  28 | loss 0.0287 | 347s
+epoch 29 batch 0  loss 0.0240
+epoch 29 batch 50  loss 0.0265
+epoch 29 batch 100  loss 0.0298
+epoch 29 batch 150  loss 0.0281
+epoch 29 batch 200  loss 0.0306
+epoch 29 batch 250  loss 0.0299
+epoch 29 batch 300  loss 0.0234
+epoch 29 batch 350  loss 0.0281
+epoch 29 batch 400  loss 0.0265
+epoch 29 batch 450  loss 0.0300
+epoch  29 | loss 0.0286 | 347s
+epoch 30 batch 0  loss 0.0322
+epoch 30 batch 50  loss 0.0295
+epoch 30 batch 100  loss 0.0279
+epoch 30 batch 150  loss 0.0268
+epoch 30 batch 200  loss 0.0275
+epoch 30 batch 250  loss 0.0276
+epoch 30 batch 300  loss 0.0258
+epoch 30 batch 350  loss 0.0258
+epoch 30 batch 400  loss 0.0263
+epoch 30 batch 450  loss 0.0278
+epoch  30 | loss 0.0284 | 347s
+epoch 31 batch 0  loss 0.0266
+epoch 31 batch 50  loss 0.0302
+epoch 31 batch 100  loss 0.0318
+epoch 31 batch 150  loss 0.0304
+epoch 31 batch 200  loss 0.0255
+epoch 31 batch 250  loss 0.0266
+epoch 31 batch 300  loss 0.0308
+epoch 31 batch 350  loss 0.0289
+epoch 31 batch 400  loss 0.0305
+epoch 31 batch 450  loss 0.0340
+epoch  31 | loss 0.0287 | 347s
+epoch 32 batch 0  loss 0.0274
+epoch 32 batch 50  loss 0.0274
+epoch 32 batch 100  loss 0.0272
+epoch 32 batch 150  loss 0.0323
+epoch 32 batch 200  loss 0.0300
+epoch 32 batch 250  loss 0.0279
+epoch 32 batch 300  loss 0.0280
+epoch 32 batch 350  loss 0.0271
+epoch 32 batch 400  loss 0.0303
+epoch 32 batch 450  loss 0.0292
+epoch  32 | loss 0.0282 | 347s
+epoch 33 batch 0  loss 0.0288
+epoch 33 batch 50  loss 0.0257
+epoch 33 batch 100  loss 0.0283
+epoch 33 batch 150  loss 0.0278
+epoch 33 batch 200  loss 0.0301
+epoch 33 batch 250  loss 0.0244
+epoch 33 batch 300  loss 0.0285
+epoch 33 batch 350  loss 0.0295
+epoch 33 batch 400  loss 0.0331
+epoch 33 batch 450  loss 0.0305
+epoch  33 | loss 0.0285 | 347s
+epoch 34 batch 0  loss 0.0316
+epoch 34 batch 50  loss 0.0271
+epoch 34 batch 100  loss 0.0258
+epoch 34 batch 150  loss 0.0277
+epoch 34 batch 200  loss 0.0261
+epoch 34 batch 250  loss 0.0246
+epoch 34 batch 300  loss 0.0267
+epoch 34 batch 350  loss 0.0265
+epoch 34 batch 400  loss 0.0316
+epoch 34 batch 450  loss 0.0292
+epoch  34 | loss 0.0287 | 347s
+epoch 35 batch 0  loss 0.0331
+epoch 35 batch 50  loss 0.0306
+epoch 35 batch 100  loss 0.0246
+epoch 35 batch 150  loss 0.0303
+epoch 35 batch 200  loss 0.0304
+epoch 35 batch 250  loss 0.0289
+epoch 35 batch 300  loss 0.0293
+epoch 35 batch 350  loss 0.0295
+epoch 35 batch 400  loss 0.0271
+epoch 35 batch 450  loss 0.0301
+epoch  35 | loss 0.0285 | 347s
+epoch 36 batch 0  loss 0.0295
+epoch 36 batch 50  loss 0.0314
+epoch 36 batch 100  loss 0.0295
+epoch 36 batch 150  loss 0.0283
+epoch 36 batch 200  loss 0.0277
+epoch 36 batch 250  loss 0.0315
+epoch 36 batch 300  loss 0.0270
+epoch 36 batch 350  loss 0.0231
+epoch 36 batch 400  loss 0.0245
+epoch 36 batch 450  loss 0.0337
+epoch  36 | loss 0.0284 | 347s
+epoch 37 batch 0  loss 0.0251
+epoch 37 batch 50  loss 0.0295
+epoch 37 batch 100  loss 0.0284
+epoch 37 batch 150  loss 0.0267
+epoch 37 batch 200  loss 0.0322
+epoch 37 batch 250  loss 0.0259
+epoch 37 batch 300  loss 0.0245
+epoch 37 batch 350  loss 0.0296
+epoch 37 batch 400  loss 0.0288
+epoch 37 batch 450  loss 0.0276
+epoch  37 | loss 0.0283 | 347s
+epoch 38 batch 0  loss 0.0321
+epoch 38 batch 50  loss 0.0279
+epoch 38 batch 100  loss 0.0287
+epoch 38 batch 150  loss 0.0317
+epoch 38 batch 200  loss 0.0253
+epoch 38 batch 250  loss 0.0294
+epoch 38 batch 300  loss 0.0262
+epoch 38 batch 350  loss 0.0247
+epoch 38 batch 400  loss 0.0320
+epoch 38 batch 450  loss 0.0268
+epoch  38 | loss 0.0286 | 348s
+epoch 39 batch 0  loss 0.0252
+epoch 39 batch 50  loss 0.0284
+epoch 39 batch 100  loss 0.0240
+epoch 39 batch 150  loss 0.0265
+epoch 39 batch 200  loss 0.0304
+epoch 39 batch 250  loss 0.0322
+epoch 39 batch 300  loss 0.0308
+epoch 39 batch 350  loss 0.0338
+epoch 39 batch 400  loss 0.0291
+epoch 39 batch 450  loss 0.0260
+epoch  39 | loss 0.0279 | 346s
